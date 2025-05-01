@@ -15,8 +15,15 @@ labels = ['akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc']
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    print("====== REQUEST RECEIVED ======")
     if 'image' not in request.files:
+        print("====== No Image Found ======")
         return jsonify({"error": "No image uploaded"}), 400
+
+    img_file = request.files["image"]
+    print("====== Image Received ======")
+
+
 
     img_file = request.files["image"]
     img = load_img(img_file, target_size=(64, 64))
