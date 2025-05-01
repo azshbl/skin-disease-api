@@ -25,7 +25,7 @@ def predict():
 
 
 
-    img_file = request.files["image"]
+   
     img = load_img(img_file, target_size=(64, 64))
     img = img_to_array(img) / 255.0
     img = np.expand_dims(img, axis=0)
