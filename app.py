@@ -1,4 +1,4 @@
-
+from io import BytesIO
 from flask import Flask, request, jsonify
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
@@ -25,8 +25,8 @@ def predict():
 
 
 
-   
-    img = load_img(img_file.stream, target_size=(64, 64))
+    img_bytes = img_file.read()
+    img = load_img(BytesIO(img_bytes), target_size=(64, 64))
     img = img_to_array(img) / 255.0
     img = np.expand_dims(img, axis=0)
 
